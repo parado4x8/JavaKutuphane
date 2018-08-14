@@ -3,11 +3,12 @@ package com.deniz.kutuphane.entities;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.OneToMany;
 
 @Entity
@@ -17,11 +18,12 @@ public class Users {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(unique= true)
 	private String username;
 	private String password;
 	private boolean enabled;
 
-	@OneToMany
+	@OneToMany (cascade = CascadeType.ALL)
 	private Collection<Authorities> authorities = new ArrayList<Authorities>();
 
 	private String firstName;

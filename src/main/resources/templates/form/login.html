@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="layout/layout">
+      layout:decorate="~{layout/layout}">
+<th:block layout:fragment="title">Login</th:block>     
 <th:block layout:fragment="content">
-	
+ 
  <div id="login" class="mt-5">
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
@@ -16,17 +17,24 @@
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
-                                <input type="text" name="password" id="password" class="form-control">
+                                <input type="password" name="password" id="password" class="form-control">
                             </div>
                             <div class="form-group">
-                            	<input type="hidden" th:value="${_csrf.token}" th:name="${_csrf.parameterName}" />
+                            	<input type="hidden" th:value="${_csrf.token}" th:name="${_csrf.parameterName}" /> 
                                 <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
                                 <input type="submit" name="submit" class="btn btn-info btn-md col-md-12" value="Login ">
                             </div>
                             <div id="register-link" class="text-right">
-                                <a href="#" class="text-info">Register here</a>
+                                <a th:href="@{/register}" class="text-info">Register here</a>
                             </div>
+                            <div th:if="${param.loginFailed}" class="alert alert-danger">    
+                    			Giriş Başarısız !
+                			</div>
+							<div th:if="${param.logout}" class="alert alert-success">                        			
+                    			Çıkış Başarılı !
+                			</div>
                         </form>
+
                     </div>
                 </div>
             </div>

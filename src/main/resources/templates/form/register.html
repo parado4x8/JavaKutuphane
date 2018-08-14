@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<th:block layout:fragment="title">Register</th:block>    
+<th:block layout:fragment="content">
+	
+ <div id="login" class="mt-5">
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" th:action="@{/register}" method="post" th:object="${user}">
+                            <h3 class="text-center text-info">Register</h3>
+							<div class="form-group">
+                                <label for="firstname" class="text-info">First Name:</label><br>
+                                <input type="text" name="firstname" id="firstname" class="form-control" th:field="${user.firstName}">
+                            </div>
+							<div class="form-group">
+                                <label for="lastname" class="text-info">Last Name:</label><br>
+                                <input type="text" name="lastname" id="lastname" class="form-control" th:field="${user.lastName}">
+                            </div>
+                            <div class="form-group">
+                                <label for="username" class="text-info">Username:</label><br>
+                                <input type="text" name="username" id="username" class="form-control" th:field="${user.username}">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-info">Password:</label><br>
+                                <input type="text" name="password" id="password" class="form-control" th:field="${user.password}">
+                            </div>
+                            <div class="form-group">
+                            	<input type="hidden" th:value="${_csrf.token}" th:name="${_csrf.parameterName}" />
+                                <input type="submit" name="submit" class="btn btn-info btn-md col-md-12" value="Register">
+                            </div>
+                            <div id="register-link" class="text-right">
+                                <a th:href="@{/login}" class="text-info">Login here</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+</th:block>
+</html>
